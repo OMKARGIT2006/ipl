@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>IPL Live Streaming</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            -webkit-text-size-adjust: 100%;
+            touch-action: manipulation;
+        }
+        
+        header {
+            background-color: #1a1a1a;
+            padding: 12px 0;
+            text-align: center;
+            border-bottom: 2px solid #ffcc00;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        h1 {
+            color: #ffcc00;
+            font-size: clamp(18px, 4vw, 24px);
+            padding: 0 10px;
+        }
+        
+        .ad-container {
+            width: 100%;
+            background-color: #222;
+            text-align: center;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .ad-placeholder {
+            color: #777;
+            padding: 15px;
+            display: none;
+            background-color: #222;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        
+        .stream-wrapper {
+            position: relative;
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .stream-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            background-color: #000;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+        }
+        
+        .stream-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            border: 1px solid #ffcc00;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 14px;
+        }
+        
+        .fullscreen-btn:hover {
+            background-color: rgba(255,204,0,0.3);
+        }
+        
+        .info {
+            margin: 15px 0;
+            padding: 12px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 12px;
+            background-color: #1a1a1a;
+            margin-top: 10px;
+            font-size: 12px;
+            border-top: 1px solid #333;
+        }
+        
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 0;
+            }
+            
+            .container {
+                padding: 8px;
+            }
+            
+            .stream-container {
+                border-radius: 4px;
+            }
+            
+            .fullscreen-btn {
+                padding: 5px 10px;
+                font-size: 12px;
+                bottom: 5px;
+                right: 5px;
+            }
+            
+            .info {
+                margin: 10px 0;
+                padding: 10px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>IPL Live Streaming - Watch Free Cricket</h1>
+    </header>
+    
+    <!-- Top Ad Space - Responsive -->
+    <div class="ad-container" id="top-ad-container">
+        <div id="top-ad">
+            <script>
+                // Mobile detection
+                var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                
+                // Load appropriate ad based on device
+                if (isMobile) {
+                    // Mobile ad (320x50)
+                    document.write(`
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key' : '127d1ac0fe5daca35b6c446c285b1f7f',
+                                'format' : 'iframe',
+                                'height' : 50,
+                                'width' : 320,
+                                'params' : {}
+                            };
+                        <\/script>
+                        <script type="text/javascript" src="//www.highperformanceformat.com/127d1ac0fe5daca35b6c446c285b1f7f/invoke.js"><\/script>
+                    `);
+                } else {
+                    // Desktop ad (728x90)
+                    document.write(`
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key' : '127d1ac0fe5daca35b6c446c285b1f7f',
+                                'format' : 'iframe',
+                                'height' : 90,
+                                'width' : 728,
+                                'params' : {}
+                            };
+                        <\/script>
+                        <script type="text/javascript" src="//www.highperformanceformat.com/127d1ac0fe5daca35b6c446c285b1f7f/invoke.js"><\/script>
+                    `);
+                }
+            </script>
+            <p class="ad-placeholder">Advertisement</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="stream-wrapper">
+            <div class="stream-container">
+                <iframe frameborder="0" marginheight="0" marginwidth="0" src="https://cdn.crichdplays.ru/embed2.php?id=starsp" name="iframe_a" scrolling="no" allowfullscreen></iframe>
+                <button class="fullscreen-btn" onclick="toggleFullscreen()">Fullscreen</button>
+            </div>
+        </div>
+        
+        <div class="info">
+            <p>Watch IPL matches live for free. This stream may be geo-restricted in some areas.</p>
+        </div>
+    </div>
+    
+    <!-- Bottom Ad Space - Responsive -->
+    <div class="ad-container" id="bottom-ad-container">
+        <div id="bottom-ad">
+            <script>
+                if (isMobile) {
+                    // Mobile ad (320x50)
+                    document.write(`
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key' : '127d1ac0fe5daca35b6c446c285b1f7f',
+                                'format' : 'iframe',
+                                'height' : 50,
+                                'width' : 320,
+                                'params' : {}
+                            };
+                        <\/script>
+                        <script type="text/javascript" src="//www.highperformanceformat.com/127d1ac0fe5daca35b6c446c285b1f7f/invoke.js"><\/script>
+                    `);
+                } else {
+                    // Desktop ad (728x90)
+                    document.write(`
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key' : '127d1ac0fe5daca35b6c446c285b1f7f',
+                                'format' : 'iframe',
+                                'height' : 90,
+                                'width' : 728,
+                                'params' : {}
+                            };
+                        <\/script>
+                        <script type="text/javascript" src="//www.highperformanceformat.com/127d1ac0fe5daca35b6c446c285b1f7f/invoke.js"><\/script>
+                    `);
+                }
+            </script>
+            <p class="ad-placeholder">Advertisement</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>This website is for demonstration purposes only. All rights belong to the respective broadcasters.</p>
+    </footer>
+    
+    <script>
+        function toggleFullscreen() {
+            const elem = document.querySelector('.stream-container');
+            
+            if (!document.fullscreenElement) {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen().catch(err => {
+                        alert(`Fullscreen failed: ${err.message}`);
+                    });
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        // Check if ads loaded properly
+        function checkAds() {
+            const topAd = document.getElementById('top-ad');
+            const bottomAd = document.getElementById('bottom-ad');
+            
+            // Check after 3 seconds
+            setTimeout(() => {
+                if (topAd && (topAd.clientHeight < 10 || topAd.innerHTML.trim().length < 50)) {
+                    topAd.innerHTML = '<p class="ad-placeholder" style="display:block;">Advertisement</p>';
+                }
+                
+                if (bottomAd && (bottomAd.clientHeight < 10 || bottomAd.innerHTML.trim().length < 50)) {
+                    bottomAd.innerHTML = '<p class="ad-placeholder" style="display:block;">Advertisement</p>';
+                }
+            }, 3000);
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAds();
+            
+            // Mobile-specific adjustments
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // Additional mobile optimizations
+                document.querySelector('.stream-container').style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
